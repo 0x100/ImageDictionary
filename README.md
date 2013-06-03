@@ -1,4 +1,4 @@
 ImageDictionary
 ===============
 
-Google Chrome plugin
+Google Chrome plugin (GPL v3)
