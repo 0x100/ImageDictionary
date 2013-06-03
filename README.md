@@ -1,0 +1,4 @@
+ImageDictionary
+===============
+
+Google Chrome plugin
