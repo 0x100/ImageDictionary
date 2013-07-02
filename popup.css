@@ -1,0 +1,31 @@
+body {
+    min-width: 76px;
+}
+
+ul.menu {
+    position: relative;
+
+    padding: 0;
+    margin: 0;
+
+    list-style-type: none;
+
+    float: right;
+}
+
+ul.menu li {
+    display: inline;
+    padding: 0;
+}
+
+ul.menu li img {
+    cursor: pointer;
+}
+
+.loadingPanel {
+    display: none;
+}
+
+.imagesPanel {
+    display: none;
+}
