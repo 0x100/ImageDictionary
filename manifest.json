@@ -10,11 +10,23 @@
         "48": "images/icon/48x48.png",
         "128": "images/icon/128x128.png"
     },
-    "permissions": ["http://*.google.com/", "https://*.google.com/", "tabs"],
+    "permissions": [
+        "tabs",
+        "chrome://favicon/",
+        "<all_urls>"
+    ],
     "browser_action": {
         "default_title": "__MSG_application_title__",
-        "default_icon": "images/icon/16x16.png",
+        "default_icon": "images/icon/48x48.png",
         "default_popup": "popup.html"
     },
-    "options_page": "options.html"
+    "options_page": "options.html",
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["selection.js"],
+            "run_at": "document_start",
+            "all_frames": true
+        }
+    ]
 }

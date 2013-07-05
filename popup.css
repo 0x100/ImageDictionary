@@ -1,16 +1,15 @@
 body {
-    min-width: 76px;
+    min-width: 400px;
+    min-height: 200px;
+    margin: 0;
+    padding: 2px;
 }
 
 ul.menu {
-    position: relative;
-
     padding: 0;
     margin: 0;
-
     list-style-type: none;
-
-    float: right;
+    text-align: right;
 }
 
 ul.menu li {
@@ -27,5 +26,8 @@ ul.menu li img {
 }
 
 .imagesPanel {
-    display: none;
+    height: 196px;
+    width: 396px;
+    border: dashed lightgray 1px;
+    margin: 5px;
 }
