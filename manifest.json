@@ -23,8 +23,9 @@
     "options_page": "options.html",
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
-            "js": ["selection.js"],
+            "matches": "<all_urls>",
+            "js": "content.js",
+            "css": "content.css",
             "run_at": "document_start",
             "all_frames": true
         }

@@ -8,3 +8,15 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     else
         sendResponse({});
 });
+
+function onDblClickListener() {
+    console.log("selection: " + window.getSelection().toString());
+}
+
+function init() {
+    document.body.addEventListener('dblclick', onDblClickListener);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    init();
+});
