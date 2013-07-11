@@ -23,13 +23,16 @@ function initListeners() {
 }
 
 function doubleClickListener(event) {
+    console.log("double click");
 
     if(event.altKey) {
+        console.log("alt is down");
+
         var selectedText = window.getSelection().toString();
         console.log("selected text: " + selectedText);
 
-        $("#dialogContent").text(selectedText);
-        $("#dialog").dialog();    
+        getData(selectedText);
+        $("#dialog").dialog();
     }    
 }
 
@@ -41,6 +44,27 @@ function createDialog() {
 
     var dialogContent = document.createElement("p");
     dialogContent.id = "dialogContent";
+
     dialog.appendChild(dialogContent);
     document.body.appendChild(dialog);
+}
+
+function getData(selectedText) {
+
+    var xmlhttp = new XMLHttpRequest();
+    var searchUrl = "http://m.images.yandex.ru/search?text=";
+    var userAgent = "Opera/9.80 (Android; Opera Mini/7.5.31657/28.2555; U; ru) Presto/2.8.119 Version/11.10";
+    var url = searchUrl + selectedText;
+    console.log("url: " + url);
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+    xmlhttp.setRequestHeader("User-Agent", userAgent);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log("data is received successfully.");
+            $("#dialogContent").html(xmlhttp.responseText);
+        }
+    };
+    xmlhttp.send(null);
 }
