@@ -22,12 +22,15 @@ function initListeners() {
     document.body.addEventListener('dblclick', doubleClickListener);
 }
 
-function doubleClickListener() {
-    var selectedText = window.getSelection().toString();
-    console.log("selected text: " + selectedText);
+function doubleClickListener(event) {
 
-    $("#dialog").dialog();
-    $("#dialogContent").text(selectedText);
+    if(event.altKey) {
+        var selectedText = window.getSelection().toString();
+        console.log("selected text: " + selectedText);
+
+        $("#dialogContent").text(selectedText);
+        $("#dialog").dialog();    
+    }    
 }
 
 function createDialog() {
