@@ -32,13 +32,19 @@ function doubleClickListener(event) {
         console.log("selected text: " + selectedText);
 
         getData(selectedText);
-        $("#dialog").dialog();
-    }    
+
+        var d = $('#img-dialog').dialog({
+            autoOpen: false,
+            width: 600
+        });
+        d.parent(".ui-dialog").wrap("<div class='img-dictionary'></div>");
+        d.dialog("open");
+    }
 }
 
 function createDialog() {
     var dialog = document.createElement("div");
-    dialog.id = "dialog";
+    dialog.id = "img-dialog";
     dialog.title = "Image Dictionary";
     dialog.style.display = "none";
 
@@ -53,13 +59,14 @@ function getData(selectedText) {
 
     var xmlhttp = new XMLHttpRequest();
     var searchUrl = "http://m.images.yandex.ru/search?text=";
-    var userAgent = "Opera/9.80 (Android; Opera Mini/7.5.31657/28.2555; U; ru) Presto/2.8.119 Version/11.10";
+//    var searchUrl = "https://google.com/search?safe=off&biw=1280&bih=709&tbm=isch&sa=1&q=";
+//    var userAgent = "Opera/9.80 (Android; Opera Mini/7.5.31657/28.2555; U; ru) Presto/2.8.119 Version/11.10";
     var url = searchUrl + selectedText;
     console.log("url: " + url);
 
     xmlhttp.open("GET", url, true);
-    xmlhttp.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-    xmlhttp.setRequestHeader("User-Agent", userAgent);
+//    xmlhttp.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+//    xmlhttp.setRequestHeader("User-Agent", userAgent);
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log("data is received successfully.");
