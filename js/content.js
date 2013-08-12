@@ -23,54 +23,66 @@ function initListeners() {
 }
 
 function doubleClickListener(event) {
-    console.log("double click");
 
     if(event.altKey) {
-        console.log("alt is down");
 
         var selectedText = window.getSelection().toString();
-        console.log("selected text: " + selectedText);
-
+        console.log('text: ' + selectedText);
         getData(selectedText);
 
-        var d = $('#img-dialog').dialog({
-            autoOpen: false,
-            width: 600
-        });
-        d.parent(".ui-dialog").wrap("<div class='img-dictionary'></div>");
-        d.dialog("open");
+        var dialog = $('#imgDialog');
+        dialog.show(1000);
     }
 }
 
 function createDialog() {
     var dialog = document.createElement("div");
-    dialog.id = "img-dialog";
+    dialog.id = "imgDialog";
     dialog.title = "Image Dictionary";
     dialog.style.display = "none";
+    dialog.className = "img-dialog";
 
     var dialogContent = document.createElement("p");
     dialogContent.id = "dialogContent";
+    dialogContent.className = "img-dialog-content";
 
     dialog.appendChild(dialogContent);
     document.body.appendChild(dialog);
+
+    $('#dialogContent').click(function() {
+        $('#imgDialog').slideToggle();
+    });
 }
 
 function getData(selectedText) {
 
     var xmlhttp = new XMLHttpRequest();
     var searchUrl = "http://m.images.yandex.ru/search?text=";
-//    var searchUrl = "https://google.com/search?safe=off&biw=1280&bih=709&tbm=isch&sa=1&q=";
-//    var userAgent = "Opera/9.80 (Android; Opera Mini/7.5.31657/28.2555; U; ru) Presto/2.8.119 Version/11.10";
+    var xpath = "//div[@class='b-prew']//img/@src";
     var url = searchUrl + selectedText;
     console.log("url: " + url);
 
     xmlhttp.open("GET", url, true);
-//    xmlhttp.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-//    xmlhttp.setRequestHeader("User-Agent", userAgent);
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             console.log("data is received successfully.");
-            $("#dialogContent").html(xmlhttp.responseText);
+            console.log(xmlhttp);
+
+            var parser = new DOMParser();
+            var dom = parser.parseFromString(xmlhttp.responseText, "text/xml");
+            console.log(dom);
+
+            var nodes = dom.evaluate(xpath, dom, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+            console.log(nodes);
+
+            var result = ""
+            var node = nodes.iterateNext ();
+            while (node) {
+                result += node.innerHTML + "<br />";
+                node = nodes.iterateNext ()
+            }
+            console.log(result);
+            $("#dialogContent").html(result);
         }
     };
     xmlhttp.send(null);

@@ -1,0 +1,23 @@
+.img-dialog {
+    border: solid #555 3px;
+    background-color: lightgoldenrodyellow;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 845;
+
+    height: 400px;
+    margin-top: -200px;
+
+    width: 600px;
+    margin-left: -300px;
+}
+
+.img-dialog-content {
+    border: none;
+    width: 100%;
+    height: 100%;
+
+    overflow: auto;
+}
