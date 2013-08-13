@@ -1,8 +1,5 @@
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    console.log("onMessage");
     if (request.method == "getSelection") {
-        console.log("method == getSelection");
-        console.log("selection: " + window.getSelection().toString());
         sendResponse({data: window.getSelection().toString()});
     }
     else
@@ -27,11 +24,10 @@ function doubleClickListener(event) {
     if(event.altKey) {
 
         var selectedText = window.getSelection().toString();
-        console.log('text: ' + selectedText);
         getData(selectedText);
 
         var dialog = $('#imgDialog');
-        dialog.show(1000);
+        dialog.show(500);
     }
 }
 
@@ -57,31 +53,26 @@ function createDialog() {
 function getData(selectedText) {
 
     var xmlhttp = new XMLHttpRequest();
-    var searchUrl = "http://m.images.yandex.ru/search?text=";
-    var xpath = "//div[@class='b-prew']//img/@src";
+    var searchUrl = "http://m.images.yandex.ru/search?text=";    
     var url = searchUrl + selectedText;
-    console.log("url: " + url);
+    
+    //var xpath = "//div[@class='b-prew']//img/@src";
 
     xmlhttp.open("GET", url, true);
     xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            console.log("data is received successfully.");
-            console.log(xmlhttp);
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {     
 
-            var parser = new DOMParser();
-            var dom = parser.parseFromString(xmlhttp.responseText, "text/xml");
-            console.log(dom);
-
-            var nodes = dom.evaluate(xpath, dom, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
-            console.log(nodes);
-
-            var result = ""
-            var node = nodes.iterateNext ();
-            while (node) {
-                result += node.innerHTML + "<br />";
-                node = nodes.iterateNext ()
-            }
-            console.log(result);
+            var doc = xmlhttp.responseText;
+            var hrefs = doc.match(/http:\/\/[\w-]+.yandex.net\/i\?id=[\w-]+/g); //Matches to the url like "http://im0-tub-ru.yandex.net/i?id=473594863-10-71"
+            var result = '';
+            
+            if(hrefs && hrefs.length > 0) {
+                for(var i = 0; i < hrefs.length; i++) {
+                    result += "<div class='imgbox'>";
+                    result += "<img src='" + hrefs[i] + "' class='img' alt='' />";
+                    result += "</div>";
+                }
+            }            
             $("#dialogContent").html(result);
         }
     };

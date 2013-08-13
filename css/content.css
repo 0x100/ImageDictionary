@@ -1,23 +1,43 @@
 .img-dialog {
-    border: solid #555 3px;
-    background-color: lightgoldenrodyellow;
+    border: solid #777 4px;
+    background-color: white;
 
     position: fixed;
     left: 50%;
     top: 50%;
     z-index: 845;
 
-    height: 400px;
-    margin-top: -200px;
+    height: 476px;
+    margin-top: -238px;
 
-    width: 600px;
-    margin-left: -300px;
+    width: 632px;
+    margin-left: -316px;
 }
 
 .img-dialog-content {
     border: none;
-    width: 100%;
-    height: 100%;
-
+    width: 628px;
+    height: 468px;
+    text-align: center;
     overflow: auto;
+    margin: 0;
+    padding: 4px;
+}
+
+.imgbox {
+    float: left;    
+    
+    border: solid black 1px;
+    margin: 2px;    
+    background-color: white;
+    
+    width: 150px;
+    height: 150px;
+    
+    text-align: center;
+    vertical-align: middle;
+}
+
+.img {
+
 }
