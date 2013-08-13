@@ -2,6 +2,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.method == "getSelection") {
         sendResponse({data: window.getSelection().toString()});
     }
+    else if(request.method == "showDialog") {
+        showDialog(); 
+    }
     else
         sendResponse({});
 });
@@ -17,17 +20,30 @@ function init() {
 
 function initListeners() {
     document.body.addEventListener('dblclick', doubleClickListener);
+    document.body.addEventListener('keyup', keyListener);
+}
+
+function showDialog() {
+    var selectedText = window.getSelection().toString();
+    getData(selectedText);
+
+    var dialog = $('#imgDialog');
+    dialog.show(500);
+}
+
+function hideDialog() {
+    $('#imgDialog').slideToggle();
 }
 
 function doubleClickListener(event) {
-
     if(event.altKey) {
+        showDialog();        
+    }
+}
 
-        var selectedText = window.getSelection().toString();
-        getData(selectedText);
-
-        var dialog = $('#imgDialog');
-        dialog.show(500);
+function keyListener(event) {
+    if (event.keyCode == 27) { 
+        hideDialog();
     }
 }
 
@@ -46,7 +62,7 @@ function createDialog() {
     document.body.appendChild(dialog);
 
     $('#dialogContent').click(function() {
-        $('#imgDialog').slideToggle();
+        hideDialog();
     });
 }
 
@@ -67,7 +83,7 @@ function getData(selectedText) {
             var result = '';
             
             if(hrefs && hrefs.length > 0) {
-                for(var i = 0; i < hrefs.length; i++) {
+                for(var i = 0; i < hrefs.length && i < 12; i++) {
                     result += "<div class='imgbox'>";
                     result += "<img src='" + hrefs[i] + "' class='img' alt='' />";
                     result += "</div>";

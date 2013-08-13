@@ -13,7 +13,8 @@
     "permissions": [
         "tabs",
         "chrome://favicon/",
-        "<all_urls>"
+        "<all_urls>",
+        "contextMenus"
     ],
     "browser_action": {
         "default_title": "__MSG_application_title__",
@@ -29,5 +30,8 @@
             "run_at": "document_start",
             "all_frames": true
         }
-    ]
+    ],
+    "background": {
+      "scripts": ["js/contextmenu.js"]
+    }
 }
