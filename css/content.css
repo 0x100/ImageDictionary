@@ -7,8 +7,8 @@
     top: 50%;
     z-index: 845;
 
-    height: 476px;
-    margin-top: -238px;
+    height: 500px;
+    margin-top: -250px;
 
     width: 632px;
     margin-left: -316px;
@@ -32,12 +32,21 @@
     background-color: white;
     
     width: 150px;
-    height: 150px;
-    
-    text-align: center;
-    vertical-align: middle;
+    height: 150px;   
 }
 
-.img {
+.imgbox a {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
 
+.yandex-logo {
+    position: relative;
+    left: 6px;
+    top: 4px;
+    width: 100%;
+}
+
+.results {
 }
