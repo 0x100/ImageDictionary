@@ -6,5 +6,5 @@ function onClickContextMenu(info, tab) {
 }
 
 var context = "selection";
-var title = "Show in Image Dictionary";
+var title = "Show '%s' in Image Dictionary";
 var id = chrome.contextMenus.create({"title": title, "contexts":[context], "onclick": onClickContextMenu});
