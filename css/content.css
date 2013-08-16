@@ -35,7 +35,7 @@
     height: 150px;   
 }
 
-.imgbox a {
+.imgbox span {
     text-align: center;
     vertical-align: middle;
     display: table-cell;

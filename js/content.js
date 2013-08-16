@@ -106,7 +106,7 @@ function getData(selectedText) {
             if(hrefs && hrefs.length > 0) {
                 for(var i = 0; i < hrefs.length && i < 12; i++) {
                     result += "<div class='imgbox'>";
-                    result += "<a href=''><img src='" + hrefs[i] + "' alt='' /></a>";
+                    result += "<span><img src='" + hrefs[i] + "' alt='' /></span>";
                     result += "</div>";
                 }
             }            
