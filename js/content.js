@@ -64,6 +64,7 @@ function createDialog() {
     var logoImg = document.createElement("img");
     logoImg.src = "http://img.yandex.net/i/m_logo.png";
     logoImg.alt = "";
+    logoImg.className = "yandex-logo-img";
 
     var dialogContent = document.createElement("p");
     dialogContent.id = "dialogContent";
@@ -106,7 +107,7 @@ function getData(selectedText) {
             if(hrefs && hrefs.length > 0) {
                 for(var i = 0; i < hrefs.length && i < 12; i++) {
                     result += "<div class='imgbox'>";
-                    result += "<span><img src='" + hrefs[i] + "' alt='' /></span>";
+                    result += "<img src='" + hrefs[i] + "' class='img' alt='' />";
                     result += "</div>";
                 }
             }            

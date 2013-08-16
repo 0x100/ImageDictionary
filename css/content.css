@@ -21,7 +21,7 @@
     text-align: center;
     overflow: auto;
     margin: 0;
-    padding: 4px;
+    padding: 0 4px 4px 4px;
 }
 
 .imgbox {
@@ -32,13 +32,18 @@
     background-color: white;
     
     width: 150px;
-    height: 150px;   
-}
-
-.imgbox span {
+    height: 150px;  
+    
     text-align: center;
     vertical-align: middle;
-    display: table-cell;
+    display: table-cell; 
+}
+
+.img {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 0;
+    padding: 0;
 }
 
 .yandex-logo {
@@ -46,7 +51,11 @@
     left: 6px;
     top: 4px;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.results {
+.yandex-logo-img {
+    margin: 0;
+    padding: 0;
 }
