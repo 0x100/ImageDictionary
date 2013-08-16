@@ -7,5 +7,17 @@
     },
     "context_menu_item": {
         "message": "\"%s\" в Image Dictionary"
+    },
+    "options_title": {
+        "message": "Настройки Image Dictionary"
+    },
+    "save": {
+        "message": "Сохранить"
+    },
+    "key": {
+        "message": "Кнопка"
+    },
+    "options_saved": {
+        "message": "Настройки сохранены."
     }
 }

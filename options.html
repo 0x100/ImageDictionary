@@ -1,24 +1,21 @@
-<!DOCTYPE HTML>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="css/options.css" rel="stylesheet" type="text/css"/>
+<title></title>
 </head>
 
 <body>
 
+<span id="lblKey"></span>:
+<select id="ddlKey">
+ <option value="none"> - </option>
+ <option value="alt">Alt</option>
+ <option value="ctrl">Ctrl</option>
+</select>
 
-<br/>
+<br>
+<div id="status"></div>
+<input type="button" id="btnSave" />
 
-<div class="menu">
-    <div class="buttons">
-        <input type="button" value="Save" onclick="return onSave();"/>
-        <input type="button" value="Exit" onclick="return onClose();"/>
-    </div>
-</div>
+<script src="js/options.js"></script>
 
-<script type="text/javascript" src="js/options.js"></script>
-
-</body>
 </html>

@@ -36,7 +36,12 @@ function hideDialog() {
 }
 
 function doubleClickListener(event) {
-    if(event.altKey) {
+    var controlKey = localStorage["control_key"];
+    if (!controlKey) {
+      controlKey = 'none';
+    }
+    console.log(controlKey);
+    if(controlKey == 'alt' && event.altKey || controlKey == 'ctrl' && event.ctrlKey || controlKey == 'none') {
         showDialog();        
     }
 }

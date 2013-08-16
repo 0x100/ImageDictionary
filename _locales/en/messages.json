@@ -3,9 +3,21 @@
         "message": "Image Dictionary"
     },
     "application_description": {
-        "message": "Images display corresponding to the selected text"
+        "message": "Images displaing corresponding to the selected text"
     },
     "context_menu_item": {
         "message": "\"%s\" in Image Dictionary"
+    },
+    "options_title": {
+        "message": "Image Dictionary settings"
+    },
+    "save": {
+        "message": "Save"
+    },
+    "key": {
+        "message": "Key"
+    },
+    "options_saved": {
+        "message": "Settings saved."
     }
 }
