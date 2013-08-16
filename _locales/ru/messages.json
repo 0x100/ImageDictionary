@@ -4,5 +4,8 @@
     },
     "application_description": {
         "message": "Показ изображений, соответствующих выделенному тексту"
+    },
+    "context_menu_item": {
+        "message": "\"%s\" в Image Dictionary"
     }
 }

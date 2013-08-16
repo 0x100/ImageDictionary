@@ -4,5 +4,8 @@
     },
     "application_description": {
         "message": "Images display corresponding to the selected text"
+    },
+    "context_menu_item": {
+        "message": "\"%s\" in Image Dictionary"
     }
 }
