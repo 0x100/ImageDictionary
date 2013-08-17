@@ -22,7 +22,7 @@ function saveOptions() {
 function restoreOptions() {
   var controlKey = localStorage["control_key"];
   if (!controlKey) {
-    return;
+      controlKey = 'alt';
   }
   var ddlKey = document.getElementById("ddlKey");
   for (var i = 0; i < ddlKey.children.length; i++) {

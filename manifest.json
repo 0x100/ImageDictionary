@@ -18,7 +18,7 @@
     ],
     "browser_action": {
         "default_title": "__MSG_application_title__",
-        "default_icon": "images/icon/49x49.png"
+        "default_icon": "images/icon/48x48.png"
     },
     "options_page": "options.html",
     "content_scripts": [
@@ -31,6 +31,6 @@
         }
     ],
     "background": {
-      "scripts": ["js/contextmenu.js"]
+        "scripts": ["js/background.js"]
     }
 }
