@@ -19,5 +19,14 @@
     },
     "options_saved": {
         "message": "Settings saved."
+    },
+    "click_type": {
+        "message": "Click type"
+    },
+    "dblclick": {
+        "message": "Double click"
+    },
+    "click": {
+        "message": "Single click"
     }
 }

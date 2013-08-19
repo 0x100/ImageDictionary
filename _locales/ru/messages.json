@@ -19,5 +19,14 @@
     },
     "options_saved": {
         "message": "Настройки сохранены."
+    },
+    "click_type": {
+        "message": "Тип клика"
+    },
+    "dblclick": {
+        "message": "Двойной клик"
+    },
+    "click": {
+        "message": "Одинарный клик"
     }
 }

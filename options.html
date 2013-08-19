@@ -2,21 +2,29 @@
 <html>
 <head>
     <title></title>
+    <link rel="stylesheet" type="text/css" href="css/options.css">
 </head>
 
 <body>
 
-<span id="lblKey"></span>:
-<select id="ddlKey">
- <option value="none"> - </option>
- <option value="alt">Alt</option>
- <option value="ctrl">Ctrl</option>
-</select>
+<div id="options">
+    <label id="lblClickType" for="ddlClickType"></label>
+    <select id="ddlClickType">
+    </select>
+    <label id="lblKey" for="ddlKey"></label>
+    <select id="ddlKey">
+        <option value="none"> -</option>
+        <option value="alt">Alt</option>
+        <option value="ctrl">Ctrl</option>
+    </select>
+</div>
 
 <br>
+
 <div id="status"></div>
-<input type="button" id="btnSave" />
+<input type="button" id="btnSave"/>
 
 <script src="js/options.js"></script>
 
+</body>
 </html>

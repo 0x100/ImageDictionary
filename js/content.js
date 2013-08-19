@@ -3,12 +3,14 @@
 });
 
 function init() {
-    document.body.addEventListener('dblclick', doubleClickListener);
+    chrome.runtime.sendMessage({method: "getLocalStorage", key: "click_type"}, function (response) {
+        document.body.addEventListener(response.data && response.data == '1' ? 'click' : 'dblclick', clickListener);
+    });
     document.body.addEventListener('keyup', keyListener);
     createDialog();
 }
 
-function doubleClickListener(event) {
+function clickListener(event) {
     chrome.runtime.sendMessage({method: "getLocalStorage", key: "control_key"}, function (response) {
         var controlKey = response.data ? response.data : 'alt';
         if (controlKey == 'alt' && event.altKey || controlKey == 'ctrl' && event.ctrlKey || controlKey == 'none') {

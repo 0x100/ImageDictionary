@@ -1,41 +1,38 @@
 body {
-    background-color: #EEEEEE;
+    background-color: slategray;
+    text-align: center;
 }
 
 label {
     display: block;
-    padding: 4px;
+    padding: 2px;
     font-weight: bold;
 }
 
-label.ctrl {
-    display: block;
-    vertical-align: middle;
-    font-weight: normal;
-}
-
-a {
-    color: #729FCF;
-}
-
-div.menu {
-    width: 700px;
-    background: #E6E6E6;
-    padding: 7px;
+#options {
+    margin-top: 10px;
+    width: 400px;
+    background: steelblue;
+    padding: 20px;
     margin-left: auto;
     margin-right: auto;
     -webkit-border-radius: 7px;
     -webkit-box-shadow: 0 0 5px #8EC2EB;
+    text-align: left;
 }
 
-div.buttons {
-    text-align: center;
+#status {
+    color: white;
 }
 
-div.buttons input[type=button] {
-    width: 140px;
+#lblKey {
+    margin-top: 10px;
 }
 
-select #language {
-    width: 200px;
+select {
+    width: 150px;
+}
+
+input[type=button] {
+    width: 100px;
 }
