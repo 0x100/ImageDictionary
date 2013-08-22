@@ -1,4 +1,4 @@
-.img-dialog {
+.imdict-dialog {
     border: solid #777 4px;
     background-color: white;
 
@@ -7,49 +7,50 @@
     top: 50%;
     z-index: 845;
 
-    height: 500px;
+    height: 504px;
     margin-top: -250px;
 
-    width: 632px;
+    width: 640px;
     margin-left: -316px;
 }
 
-.img-dialog-content {
+.imdict-dialog-content {
     border: none;
-    width: 628px;
-    height: 468px;
+    width: 636px;
+    height: 476px;
     text-align: center;
     overflow: auto;
     margin: 0;
     padding: 0 4px 4px 4px;
 }
 
-.imgbox {
-    float: left;    
-    
-    border: solid black 1px;
-    margin: 2px;    
+.imdict-dialog-content .container {
+    display: table;
+    float: left;
+    border: solid gray 1px;
+    margin: 3px;
+    padding: 0;
     background-color: white;
-    
     width: 150px;
-    height: 150px;  
-    
+    height: 150px;
+    border-radius: 3px;
+}
+.imdict-dialog-content .imgbox {
+    display: table-cell;
     text-align: center;
     vertical-align: middle;
-    display: table-cell; 
+    border-width: 0;
 }
-
-.img {
-    max-width: 150px;
-    max-height: 150px;
-    margin: 0;
-    padding: 0;
+.imdict-dialog-content .img {
+    max-width: 146px;
+    max-height: 146px;
+    vertical-align: middle;
 }
 
 .yandex-logo {
     position: relative;
     left: 6px;
-    top: 4px;
+    top: 2px;
     width: 100%;
     margin: 0;
     padding: 0;

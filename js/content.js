@@ -44,8 +44,8 @@ function parseData(doc) {
 
     if (hrefs && hrefs.length > 0) {
         for (var i = 0; i < hrefs.length && i < 12; i++) {
-            result += "<div class='imgbox'>";
-            result += "<img src='" + hrefs[i] + "' class='img' alt='' />";
+            result += "<div class='container'>";
+            result += "<div class='imgbox'><img src='" + hrefs[i] + "' class='img' alt='' /></div>";
             result += "</div>";
         }
     }
@@ -78,7 +78,7 @@ function createDialog() {
     dialog.id = "imgDialog";
     dialog.title = "Image Dictionary";
     dialog.style.display = "none";
-    dialog.className = "img-dialog";
+    dialog.className = "imdict-dialog";
 
     var logo = document.createElement("div");
     logo.id = 'yandexLogo';
@@ -94,7 +94,7 @@ function createDialog() {
 
     var dialogContent = document.createElement("p");
     dialogContent.id = "dialogContent";
-    dialogContent.className = "img-dialog-content";
+    dialogContent.className = "imdict-dialog-content";
 
     var resultsCount = document.createElement("span");
     resultsCount.id = "resultsCount";
