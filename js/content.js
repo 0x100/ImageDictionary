@@ -39,7 +39,7 @@ function keyListener(event) {
 
 function parseData(doc) {
     var hrefs = doc.match(/http:\/\/[\w-]+.yandex.net\/i\?id=[\w-]+/g); //Matches to the url like "http://im0-tub-ru.yandex.net/i?id=473594863-10-71"
-    var resultsCount = doc.match(/[\d]+\-[\d]+ [а-яa-z]+ [\d]+&nbsp;[а-яa-z]+./g); //Matches to string like "1-12 из 199 тыс."
+    var resultsCount = doc.match(/[\d]+\-[\d]+[\s][а-яa-z]+[\s][\d]+[\s][а-яa-z]+./g); //Matches to string like "1-12 из 199 тыс."
     var result = '';
 
     if (hrefs && hrefs.length > 0) {
@@ -65,7 +65,7 @@ function loadData(selectedText) {
             var data = parseData(doc);
 
             if (data.resultsCount) {
-                $("#resultsCount").text("&nbsp;" + data.resultsCount);
+                $("#resultsCount").text(data.resultsCount);
             }
             $("#dialogContent").html(data.result);
         }
