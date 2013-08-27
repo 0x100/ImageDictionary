@@ -28,5 +28,8 @@
     },
     "click": {
         "message": "Single click"
+    },
+    "not_found": {
+        "message": "Not found"
     }
 }

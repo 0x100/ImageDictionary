@@ -8,10 +8,10 @@
     z-index: 845;
 
     height: 504px;
-    margin-top: -250px;
+    margin-top: -252px;
 
     width: 640px;
-    margin-left: -316px;
+    margin-left: -320px;
 }
 
 .imdict-dialog-content {
@@ -63,4 +63,19 @@
     top: 4px;
     right: 10px;
     font-size: 10pt;
+}
+
+.not-found-message {
+    width: 500px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -250px;
+    font-size: 52pt;
+    color: dimgray;
+    text-align: center;
+    vertical-align: middle;
+    font-family: Verdana, serif;
 }
