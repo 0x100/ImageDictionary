@@ -24,6 +24,7 @@ function showDialog() {
     loadData(selectedText);
 
     var dialog = $('#imgDialog');
+    dialog.attr('title', selectedText);
     dialog.show(500);
 }
 
@@ -76,7 +77,6 @@ function loadData(selectedText) {
 function createDialog() {
     var dialog = document.createElement("div");
     dialog.id = "imgDialog";
-    dialog.title = "Image Dictionary";
     dialog.style.display = "none";
     dialog.className = "imdict-dialog";
 
