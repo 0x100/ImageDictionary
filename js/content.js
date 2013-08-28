@@ -97,6 +97,7 @@ function clickListener(event) {
     chrome.runtime.sendMessage({method: "getLocalStorage", key: "control_key"}, function (response) {
         var controlKey = response.data ? response.data : 'alt';
         if (controlKey == 'alt' && event.altKey || controlKey == 'ctrl' && event.ctrlKey || controlKey == 'none') {
+            chrome.runtime.sendMessage({method: 'gaEvent', category: 'Showing dialog', event: 'key & mouse'});
             showDialog();
         }
     });
