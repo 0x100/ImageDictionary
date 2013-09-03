@@ -90,7 +90,10 @@ function showDialog() {
 }
 
 function hideDialog() {
-    $('#imgDialog').slideToggle();
+    var imgDialog = $('#imgDialog');
+    if(imgDialog.is(':visible')) {
+        imgDialog.slideToggle();
+    }
 }
 
 function clickListener(event) {

@@ -23,6 +23,9 @@ function saveOptions() {
     setTimeout(function () {
         status.innerHTML = "";
     }, 750);
+
+    var backgroundPage = chrome.extension.getBackgroundPage();
+    backgroundPage.gaEvent({category: 'Options', event: 'save'});
 }
 
 function restoreOptions() {

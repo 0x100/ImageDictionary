@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse){
         sendResponse({data: localStorage[message.key]});
     }
     else if (message.method == "gaEvent") {
-        _gaq.push(['_trackEvent', message.category, message.event]);
+        gaEvent(message);
     }
     else {
         sendResponse({});
@@ -31,3 +31,7 @@ _gaq.push(['_trackPageview']);
     ga.src = 'https://ssl.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+
+function gaEvent(message) {
+    _gaq.push(['_trackEvent', message.category, message.event]);
+}
