@@ -1,4 +1,4 @@
 Image Dictionary
 ===============
 
-Google Chrome extension for viewing images by selected text
+Google Chrome extension for displaying images by the selected text on the page
