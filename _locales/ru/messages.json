@@ -3,7 +3,7 @@
         "message": "Image Dictionary"
     },
     "application_description": {
-        "message": "Показ изображений, соответствующих выделенному тексту"
+        "message": "Показ изображений, соответствующих выделенному тексту на странице"
     },
     "context_menu_item": {
         "message": "\"%s\" в Image Dictionary"

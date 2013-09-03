@@ -3,7 +3,7 @@
         "message": "Image Dictionary"
     },
     "application_description": {
-        "message": "Images displaing corresponding to the selected text"
+        "message": "Displaying images corresponding to the selected text on the page"
     },
     "context_menu_item": {
         "message": "\"%s\" in Image Dictionary"
