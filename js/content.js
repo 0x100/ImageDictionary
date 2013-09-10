@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initialize();
 });
 
-function initialize() {    
+function initialize() {
     initializeEvents();
 }
 
@@ -57,22 +57,26 @@ function createDialog() {
     dialog.appendChild(nothingFoundMessage);
 
     document.body.appendChild(dialog);
-    
-    $('#dialogContent').click(function () {
-        hideDialog();
-    });
 
-    $('#nothingFoundMessage').click(function () {
-        hideDialog();
-    });
+//    $('#dialogContent').click(function () {
+//        hideDialog();
+//    });
+//
+//    $('#nothingFoundMessage').click(function () {
+//        hideDialog();
+//    });
 }
 
 function initializeEvents() {
     chrome.runtime.sendMessage({method: "getLocalStorage", key: "click_type"}, function (response) {
-        document.body.addEventListener(response.data && response.data == '1' ? 'click' : 'dblclick', clickListener);
+        var isDoubleClickEvent = response.data && response.data == '2';
+        if (isDoubleClickEvent) {
+            document.body.addEventListener('dblclick', clickListener);
+        }
     });
 
-    document.body.addEventListener('keyup', keyListener);    
+    document.body.addEventListener('click',  clickListener);
+    document.body.addEventListener('keyup', keyListener);
 }
 
 function showDialog() {
@@ -80,7 +84,7 @@ function showDialog() {
 
     if (selectedText && selectedText.trim().length > 0) {
         loadData(selectedText);
-        
+
         createDialog();
 
         var dialog = $('#imgDialog');
@@ -95,18 +99,24 @@ function hideDialog() {
     if(imgDialog.is(':visible')) {
         imgDialog.slideToggle('fast', function() {
           $('#imgDialog').remove();
-        });        
+        });
     }
 }
 
 function clickListener(event) {
-    chrome.runtime.sendMessage({method: "getLocalStorage", key: "control_key"}, function (response) {
-        var controlKey = response.data ? response.data : 'alt';
-        if (controlKey == 'alt' && event.altKey || controlKey == 'ctrl' && event.ctrlKey || controlKey == 'none') {
-            chrome.runtime.sendMessage({method: 'gaEvent', category: 'Showing dialog', event: 'key & mouse'});
-            showDialog();
-        }
-    });
+    var imgDialog = $('#imgDialog');
+    if (imgDialog.is(':visible')) {
+        hideDialog();
+    }
+    else {
+        chrome.runtime.sendMessage({method: "getLocalStorage", key: "control_key"}, function (response) {
+            var controlKey = response.data ? response.data : 'alt';
+            if (controlKey == 'alt' && event.altKey || controlKey == 'ctrl' && event.ctrlKey || controlKey == 'none') {
+                chrome.runtime.sendMessage({method: 'gaEvent', category: 'Showing dialog', event: 'key & mouse'});
+                showDialog();
+            }
+        });
+    }
 }
 
 function keyListener(event) {
