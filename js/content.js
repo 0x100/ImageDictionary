@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initialize();
 });
 
-function initialize() {
-    createDialog();
+function initialize() {    
     initializeEvents();
 }
 
@@ -22,7 +21,6 @@ function createDialog() {
     var dialog = document.createElement("div");
     dialog.id = "imgDialog";
     dialog.style.display = "none";
-    dialog.className = "imdict-dialog";
 
     var logo = document.createElement("div");
     logo.id = 'yandexLogo';
@@ -59,15 +57,7 @@ function createDialog() {
     dialog.appendChild(nothingFoundMessage);
 
     document.body.appendChild(dialog);
-}
-
-function initializeEvents() {
-    chrome.runtime.sendMessage({method: "getLocalStorage", key: "click_type"}, function (response) {
-        document.body.addEventListener(response.data && response.data == '1' ? 'click' : 'dblclick', clickListener);
-    });
-
-    document.body.addEventListener('keyup', keyListener);
-
+    
     $('#dialogContent').click(function () {
         hideDialog();
     });
@@ -77,11 +67,21 @@ function initializeEvents() {
     });
 }
 
+function initializeEvents() {
+    chrome.runtime.sendMessage({method: "getLocalStorage", key: "click_type"}, function (response) {
+        document.body.addEventListener(response.data && response.data == '1' ? 'click' : 'dblclick', clickListener);
+    });
+
+    document.body.addEventListener('keyup', keyListener);    
+}
+
 function showDialog() {
     var selectedText = window.getSelection().toString();
 
     if (selectedText && selectedText.trim().length > 0) {
         loadData(selectedText);
+        
+        createDialog();
 
         var dialog = $('#imgDialog');
         dialog.attr('title', selectedText);
@@ -91,8 +91,11 @@ function showDialog() {
 
 function hideDialog() {
     var imgDialog = $('#imgDialog');
+    console.log(imgDialog);
     if(imgDialog.is(':visible')) {
-        imgDialog.slideToggle();
+        imgDialog.slideToggle('fast', function() {
+          $('#imgDialog').remove();
+        });        
     }
 }
 

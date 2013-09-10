@@ -1,4 +1,4 @@
-.imdict-dialog {
+#imgDialog {
     border: solid #777 4px;
     background-color: white;
 
@@ -14,7 +14,7 @@
     margin-left: -320px;
 }
 
-.imdict-dialog-content {
+#imgDialog .imdict-dialog-content {
     border: none;
     width: 636px;
     height: 476px;
@@ -24,7 +24,7 @@
     padding: 0 4px 4px 4px;
 }
 
-.imdict-dialog-content .container {
+#imgDialog .imdict-dialog-content .container {
     display: table;
     float: left;
     border: solid gray 1px;
@@ -35,37 +35,37 @@
     height: 150px;
     border-radius: 3px;
 }
-.imdict-dialog-content .imgbox {
+#imgDialog .imdict-dialog-content .imgbox {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
     border-width: 0;
 }
-.imdict-dialog-content .img {
+#imgDialog .imdict-dialog-content .img {
     max-width: 146px;
     max-height: 146px;
     vertical-align: middle;
 }
 
-.yandex-logo {
+#imgDialog .yandex-logo {
     width: 100%;
     height: 24px;
 }
 
-.yandex-logo-img {
+#imgDialog .yandex-logo-img {
     position: absolute;
     top: 2px;
     left: 6px;
 }
 
-.results {
+#imgDialog .results {
     position: absolute;
     top: 4px;
     right: 10px;
     font-size: 10pt;
 }
 
-.not-found-message {
+#imgDialog .not-found-message {
     width: 500px;
     height: 100px;
     position: fixed;
