@@ -95,7 +95,6 @@ function showDialog() {
 
 function hideDialog() {
     var imgDialog = $('#imgDialog');
-    console.log(imgDialog);
     if(imgDialog.is(':visible')) {
         imgDialog.slideToggle('fast', function() {
           $('#imgDialog').remove();
@@ -147,6 +146,12 @@ function loadData(selectedText) {
     xmlhttp.send(null);
 }
 
+function removeDublicates(array) {
+    return array.filter(function (elem, pos) {
+        return array.indexOf(elem) == pos;
+    });
+}
+
 function parseData(doc) {
     var hrefs = doc.match(/http:\/\/[\w-]+.yandex.net\/i\?id=[\w-]+/g); //Matches to the url like "http://im0-tub-ru.yandex.net/i?id=473594863-10-71"
     var resultsCount = doc.match(/[\d]+\-[\d]+[\s][а-яa-z]+[\s][\d]+[\s][а-яa-z]+./g); //Matches to string like "1-12 из 199 тыс."
@@ -158,6 +163,8 @@ function parseData(doc) {
     var result = '';
 
     if (hrefs && hrefs.length > 0) {
+        hrefs = removeDublicates(hrefs);
+
         for (var i = 0; i < hrefs.length && i < 12; i++) {
             result += "<div class='container'>";
             result += "<div class='imgbox'><img src='" + hrefs[i] + "' class='img' alt='' /></div>";
