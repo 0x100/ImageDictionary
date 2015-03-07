@@ -17,56 +17,6 @@ function initialize() {
     initializeEvents();
 }
 
-function createDialog() {
-    var dialog = document.createElement("div");
-    dialog.id = "imgDialog";
-    dialog.style.display = "none";
-
-    var logo = document.createElement("div");
-    logo.id = 'yandexLogo';
-    logo.className = "yandex-logo";
-
-    var logoHref = document.createElement("a");
-    logoHref.href = "http://images.yandex.ru";
-
-    var logoImg = document.createElement("img");
-    logoImg.src = "http://img.yandex.net/i/m_logo.png";
-    logoImg.alt = "";
-    logoImg.className = "yandex-logo-img";
-
-    var dialogContent = document.createElement("p");
-    dialogContent.id = "dialogContent";
-    dialogContent.className = "imdict-dialog-content";
-
-    var resultsCount = document.createElement("span");
-    resultsCount.id = "resultsCount";
-    resultsCount.className = "results";
-
-    var nothingFoundMessage = document.createElement("span");
-    nothingFoundMessage.id = "nothingFoundMessage";
-    nothingFoundMessage.innerText = chrome.i18n.getMessage("not_found");
-    nothingFoundMessage.className = "not-found-message";
-    nothingFoundMessage.display = "none";
-
-    logoHref.appendChild(logoImg);
-    logo.appendChild(logoHref);
-    logo.appendChild(resultsCount);
-
-    dialog.appendChild(logo);
-    dialog.appendChild(dialogContent);
-    dialog.appendChild(nothingFoundMessage);
-
-    document.body.appendChild(dialog);
-
-//    $('#dialogContent').click(function () {
-//        hideDialog();
-//    });
-//
-//    $('#nothingFoundMessage').click(function () {
-//        hideDialog();
-//    });
-}
-
 function initializeEvents() {
     chrome.runtime.sendMessage({method: "getLocalStorage", key: "click_type"}, function (response) {
         var isDoubleClickEvent = response.data && response.data == '2';
@@ -102,6 +52,43 @@ function hideDialog() {
     }
 }
 
+function createDialog() {
+    var dialog = document.createElement("div");
+    dialog.id = "imgDialog";
+    dialog.style.display = "none";
+
+    var logo = document.createElement("div");
+    logo.id = 'yandexLogo';
+    logo.className = "yandex-logo";
+
+    var logoHref = document.createElement("a");
+    logoHref.href = "http://images.yandex.ru";
+
+    var logoImg = document.createElement("img");
+    logoImg.src = "http://img.yandex.net/i/m_logo.png";
+    logoImg.alt = "";
+    logoImg.className = "yandex-logo-img";
+
+    var dialogContent = document.createElement("p");
+    dialogContent.id = "dialogContent";
+    dialogContent.className = "imdict-dialog-content";
+
+    var nothingFoundMessage = document.createElement("span");
+    nothingFoundMessage.id = "nothingFoundMessage";
+    nothingFoundMessage.innerText = chrome.i18n.getMessage("not_found");
+    nothingFoundMessage.className = "not-found-message";
+    nothingFoundMessage.display = "none";
+
+    logoHref.appendChild(logoImg);
+    logo.appendChild(logoHref);
+
+    dialog.appendChild(logo);
+    dialog.appendChild(dialogContent);
+    dialog.appendChild(nothingFoundMessage);
+
+    document.body.appendChild(dialog);
+}
+
 function clickListener(event) {
     var imgDialog = $('#imgDialog');
     if (imgDialog.is(':visible')) {
@@ -127,7 +114,7 @@ function keyListener(event) {
 function loadData(selectedText) {
 
     var xmlhttp = new XMLHttpRequest();
-    var searchUrl = "http://m.images.yandex.ru/search?text=";
+    var searchUrl = "http://yandex.ru/images/search?text=";
     var url = searchUrl + selectedText;
 
     xmlhttp.open("GET", url, true);
@@ -136,10 +123,6 @@ function loadData(selectedText) {
 
             var doc = xmlhttp.responseText;
             var data = parseData(doc);
-
-            if (data.resultsCount) {
-                $("#resultsCount").text(data.resultsCount);
-            }
             $("#dialogContent").html(data.result);
         }
     };
@@ -153,12 +136,10 @@ function removeDublicates(array) {
 }
 
 function parseData(doc) {
-    var hrefs = doc.match(/http:\/\/[\w-]+.yandex.net\/i\?id=[\w-]+/g); //Matches to the url like "http://im0-tub-ru.yandex.net/i?id=473594863-10-71"
-    var resultsCount = doc.match(/[\d]+\-[\d]+[\s][а-яa-z]+[\s][\d]+[\s][а-яa-z]+./g); //Matches to string like "1-12 из 199 тыс."
+    var hrefs = doc.match(/(\/\/[\w-]+\.yandex\.net\/i\?id=[\w-]+)/g); //Matches to the url like "http://im0-tub-ru.yandex.net/i?id=473594863-10-71"
 
     var nothingFoundMessage = $('#nothingFoundMessage');
     var yandexLogo = $('#yandexLogo');
-    var resultsCountLabel = $('#resultsCount');
 
     var result = '';
 
@@ -167,17 +148,15 @@ function parseData(doc) {
 
         for (var i = 0; i < hrefs.length && i < 12; i++) {
             result += "<div class='container'>";
-            result += "<div class='imgbox'><img src='" + hrefs[i] + "' class='img' alt='' /></div>";
+            result += "<div class='imgbox'><img src='http://" + hrefs[i] + "&n=3' class='img' alt='' /></div>";
             result += "</div>";
         }
         yandexLogo.css('display', 'block');
-        resultsCountLabel.css('display', 'block');
         nothingFoundMessage.css('display', 'none');
     }
     else {
         yandexLogo.css('display', 'none');
-        resultsCountLabel.css('display', 'none');
         nothingFoundMessage.css('display', 'block');
     }
-    return {resultsCount: resultsCount, result: result};
+    return {result: result};
 }
