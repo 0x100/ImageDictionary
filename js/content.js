@@ -114,7 +114,7 @@ function keyListener(event) {
 function loadData(selectedText) {
 
     var xmlhttp = new XMLHttpRequest();
-    var searchUrl = "http://yandex.ru/images/search?text=";
+    var searchUrl = "https://yandex.ru/images/search?text=";
     var url = searchUrl + selectedText;
 
     xmlhttp.open("GET", url, true);
