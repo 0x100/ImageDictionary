@@ -57,18 +57,6 @@ function createDialog() {
     dialog.id = "imgDialog";
     dialog.style.display = "none";
 
-    var logo = document.createElement("div");
-    logo.id = 'yandexLogo';
-    logo.className = "yandex-logo";
-
-    var logoHref = document.createElement("a");
-    logoHref.href = "http://images.yandex.ru";
-
-    var logoImg = document.createElement("img");
-    logoImg.src = "http://img.yandex.net/i/m_logo.png";
-    logoImg.alt = "";
-    logoImg.className = "yandex-logo-img";
-
     var dialogContent = document.createElement("p");
     dialogContent.id = "dialogContent";
     dialogContent.className = "imdict-dialog-content";
@@ -79,10 +67,6 @@ function createDialog() {
     nothingFoundMessage.className = "not-found-message";
     nothingFoundMessage.display = "none";
 
-    logoHref.appendChild(logoImg);
-    logo.appendChild(logoHref);
-
-    dialog.appendChild(logo);
     dialog.appendChild(dialogContent);
     dialog.appendChild(nothingFoundMessage);
 
@@ -136,11 +120,11 @@ function removeDublicates(array) {
 }
 
 function parseData(doc) {
-    var hrefs = doc.match(/(\/\/[\w-]+\.yandex\.net\/i\?id=[\w-]+)/g); //Matches to the url like "http://im0-tub-ru.yandex.net/i?id=473594863-10-71"
+    //Regexp for the urls like '//im0-tub-ru.yandex.net/i?id=473594863-10-71&n=21'
+    var hrefs = doc.match(/(src="\/\/[\w-]+\.yandex\.net\/i\?id=[\w-]+&amp;n=21)/g);
+    console.log(hrefs);
 
     var nothingFoundMessage = $('#nothingFoundMessage');
-    var yandexLogo = $('#yandexLogo');
-
     var result = '';
 
     if (hrefs && hrefs.length > 0) {
@@ -148,14 +132,12 @@ function parseData(doc) {
 
         for (var i = 0; i < hrefs.length && i < 12; i++) {
             result += "<div class='container'>";
-            result += "<div class='imgbox'><img src='http://" + hrefs[i] + "&n=3' class='img' alt='' /></div>";
+            result += "<div class='imgbox'><img src='http://" + hrefs[i].replace('src="', '').replace('n=21', 'n=3') + "' class='img' alt='' /></div>";
             result += "</div>";
         }
-        yandexLogo.css('display', 'block');
         nothingFoundMessage.css('display', 'none');
     }
     else {
-        yandexLogo.css('display', 'none');
         nothingFoundMessage.css('display', 'block');
     }
     return {result: result};
